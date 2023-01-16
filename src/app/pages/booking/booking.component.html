@@ -1,0 +1,9 @@
+<div class="map-container"
+  leaflet
+  [leafletOptions]="options"
+  (leafletMapReady)="onMapReady($event)"
+  (leafletClick)="mapClicked($event)">
+</div>
+<div class="to-form">
+    <button class="form-btn" routerLink="/form">Form page</button>
+</div>

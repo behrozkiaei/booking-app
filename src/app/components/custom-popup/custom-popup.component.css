@@ -1,0 +1,63 @@
+.container{
+    width: 200px;
+    border:1px solid #448bc9;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5em;
+    --bs-gutter-x: 0rem !important;
+}
+.header{
+    height: 35px;
+    background-color: #448bc9; 
+    width: 100%;
+    color: white;
+    border-top-left-radius: 0.5em;
+    border-top-right-radius: 0.5em;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+.img-box{
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+}
+img{
+    width: 200px;
+    height:100px;
+    object-fit: contain;
+}
+p{
+    margin: 5px !important;
+    font-size: 18px;
+}
+
+
+button, input[type="submit"], input[type="reset"] {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+}
+
+.edit{
+    width:80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    border-radius: 0.5em;
+    color: white;
+    background-color: #448bc9;
+}
+
+.button-box{
+    display: flex;
+    justify-content: end;
+    width: 100%; 
+    padding: 5px;   
+}

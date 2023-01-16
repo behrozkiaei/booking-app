@@ -1,0 +1,26 @@
+.map-container {
+    height: 100vh;
+  }
+  
+  .to-form{
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    right: 0;
+    width: 220px;
+    height: 120px;
+    button{
+        width:120px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30px;
+        border-radius: 0.5em;
+        color: white;
+        background-color: #448bc9;
+    }
+    .form-btn{
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+  }
