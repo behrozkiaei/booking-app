@@ -57,9 +57,6 @@ export class FormComponent   implements AfterViewInit  {
     })
   }
   
-
-
- 
   onFileSelect(event) {
     console.log(event.target.files)
     if (event.target.files.length > 0) {
@@ -97,7 +94,6 @@ export class FormComponent   implements AfterViewInit  {
 
     this.map = L.map('map').setView([0, 0], 1).on("click",(e)=>{
       this.map.removeLayer(this.marker);
-   
       const icon = L.icon({
         iconUrl: 'assets/marker-icon.png',
         iconSize: [this.zoom, this.zoom*2 ],
@@ -113,19 +109,7 @@ export class FormComponent   implements AfterViewInit  {
         }).addTo(this.map);
 
     }).on("zoomend",(e)=>{
-      this.map.removeLayer(this.marker);
-      this.zoom = e.target._zoom
-      const iconZoomed = L.icon({
-        iconUrl: 'assets/marker-icon.png',
-        iconSize: [this.zoom, this.zoom*2 ],
-        iconAnchor: [0, 10],
-      });
-      this.marker = L.marker([this.lat,this.lng],{
-        icon:iconZoomed,
-        draggable:true,
-      }).on("dragend",(e)=>{
-        this.onChangeLocation( e.target._latlng.lat,e.target._latlng.lng)
-      }).addTo(this.map);
+      this.onZoomOut(e)
     })
 
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -143,8 +127,7 @@ export class FormComponent   implements AfterViewInit  {
     });
     if(!this.editMode){
 
-      this.getCurrentPosition()
-      .subscribe((position: any) => {
+      this.getCurrentPosition().subscribe((position: any) => {
           this.lat = position.latitude;
           this.lng = position.longitude;
           this.map.flyTo([position.latitude, position.longitude], 14);
@@ -174,6 +157,21 @@ export class FormComponent   implements AfterViewInit  {
     this.lng = lng;
   }
 
+  onZoomOut(e){
+    this.map.removeLayer(this.marker);
+    this.zoom = e.target._zoom
+    const iconZoomed = L.icon({
+      iconUrl: 'assets/marker-icon.png',
+      iconSize: [this.zoom, this.zoom*2 ],
+      iconAnchor: [0, 10],
+    });
+    this.marker = L.marker([this.lat,this.lng],{
+      icon:iconZoomed,
+      draggable:true,
+    }).on("dragend",(e)=>{
+      this.onChangeLocation( e.target._latlng.lat,e.target._latlng.lng)
+    }).addTo(this.map);
+  }
   onSubmit(){
  
     if(this.locationForm.valid ){
@@ -199,6 +197,7 @@ export class FormComponent   implements AfterViewInit  {
       this.showAlert = true
     }
   }
+
   reset(){
     this.showAlert = false
     this.showSuccess = false
